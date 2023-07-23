@@ -1,0 +1,5 @@
+IP: 158.160.72.9;
+name_taski: https://kukuruku.hopto.org;
+name_kittygram: https://kittygram.servequake.com;
+login: yc-user;
+password: admin;

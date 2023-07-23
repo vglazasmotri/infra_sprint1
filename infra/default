@@ -1,0 +1,88 @@
+server {
+    server_name kukuruku.hopto.org;
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;
+        client_max_body_size 20M;
+    }
+
+    location /admin/ {
+        proxy_pass http://127.0.0.1:8000;
+        client_max_body_size 20M;
+    }
+
+    location / {
+        root   /var/www/taski;
+        index  index.html index.htm;
+        try_files $uri /index.html;
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/kukuruku.hopto.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/kukuruku.hopto.org/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = kukuruku.hopto.org) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+    listen 80;
+    server_name 158.160.72.9 kukuruku.hopto.org;
+    return 404; # managed by Certbot
+
+
+}
+
+server {
+
+    server_name kittygram.servequake.com;
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8080;
+        client_max_body_size 20M;
+    }
+
+    location /admin/ {
+        proxy_pass http://127.0.0.1:8080;
+        client_max_body_size 20M;
+    }
+
+    location /media/ {
+        alias /var/www/kittygram/media/;
+    }
+
+    location / {
+    root    /var/www/kittygram;
+    index   index.html index.htm;
+    try_files  $uri /index.html;
+    }
+
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/kittygram.servequake.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/kittygram.servequake.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot                                                                                                                                                                                                                                   of Parag^Y Prev Page      M-\ First Line
+                                                                                                                                                                                                                                                                                                         f Paragra^V Next Page      M-/ Last Line
+}
+
+
+server {
+    if ($host = kittygram.servequake.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+    server_name kittygram.servequake.com;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+}
