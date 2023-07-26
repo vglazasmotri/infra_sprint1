@@ -32,6 +32,18 @@ source venv/bin/activate
 pip install -r ../requirements.txt
 ```
 
+## В папке с проектом создайт файл .env
+```
+nano ../.env
+```
+
+## Указать значение переменной DEBUG и SECRET_KEY, добавьте в список ALLOWED_HOSTS внешний IP сервера, '127.0.0.1', localhost и доменное_имя:
+```
+SECRET_KEY=you-django-sekret-key
+DEBUG=False
+ALLOWED_HOSTS='xxx.xxx.xxx.xxx','127.0.0.1','localhost','domain_name'
+```
+
 ## Выполнить миграции
 ```
 python manage.py migrate
@@ -40,31 +52,6 @@ python manage.py migrate
 ## Создать суперюзера
 ```
 python manage.py createsuperuser
-```
-
-## В файле infra_sprint1/backend/kittygram_backend/settings.py добавьте в список ALLOWED_HOSTS внешний IP сервера, '127.0.0.1', localhost и домен:
-```
-nano settings.py
-```
-```
-ALLOWED_HOSTS = ['xxx.xxx.xxx.xxx', '127.0.0.1', 'localhost', 'доменное_имя']
-```
-
-## В этом же файле поменять значение переменной DEBUG с True на False и добавить ссылку на SECRET_KEY
-```
-DEBUG = False
-```
-```
-from dotenv import load_dotenv
-
-load_dotenv()
-
-SECRET_KEY = os.getenv('SECRET_KEY')
-```
-
-## В папке с проектом создайт файл .env с SECRET_KEY
-```
-SECRET_KEY=значение_ключа
 ```
 
 ## В settings.py поменять значение переменной STATIC_URL и добавить новую STATIC_ROOT
